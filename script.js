@@ -1,6 +1,9 @@
 let items = [];
 let scores = {};
 let currentPair = [];
+let allPairs = new Set();
+let shownPairs = new Set();
+
 
 function updateElo(rA, rB, winner, k = 32) {
   const eA = 1 / (1 + Math.pow(10, (rB - rA) / 400));
@@ -13,23 +16,45 @@ function updateElo(rA, rB, winner, k = 32) {
 }
 
 async function loadItems() {
-  const res = await fetch('list.txt');
-  const text = await res.text();
-  items = text.trim().split('\n');
-  items.forEach(item => scores[item] = 1000);
-  nextMatchup();
-}
+    const res = await fetch('list.txt');
+    const text = await res.text();
+    items = text.trim().split('\n');
+    items.forEach(item => scores[item] = 1000);
+  
+    // all unique unordered pairs
+    for (let i = 0; i < items.length; i++) {
+      for (let j = i + 1; j < items.length; j++) {
+        allPairs.add(JSON.stringify([items[i], items[j]]));
+      }
+    }
+  
+    nextMatchup();
+  }
+  
 
-function nextMatchup() {
-  const a = items[Math.floor(Math.random() * items.length)];
-  let b;
-  do {
-    b = items[Math.floor(Math.random() * items.length)];
-  } while (a === b);
-  currentPair = [a, b];
-  document.getElementById('boxA').textContent = a;
-  document.getElementById('boxB').textContent = b;
-}
+  function nextMatchup() {
+    if (shownPairs.size === allPairs.size) {
+      showResults();
+      return;
+    }
+  
+    let pair;
+    do {
+      const arr = Array.from(allPairs);
+      pair = JSON.parse(arr[Math.floor(Math.random() * arr.length)]);
+    } while (shownPairs.has(JSON.stringify(pair)));
+  
+    shownPairs.add(JSON.stringify(pair));
+    currentPair = pair;
+  
+    document.getElementById('boxA').textContent = pair[0];
+    document.getElementById('boxB').textContent = pair[1];
+  
+    // Update counter
+    document.getElementById('counter').textContent = 
+      `Matchup ${shownPairs.size} of ${allPairs.size}`;
+  }
+  
 
 function handleVote(winnerIndex) {
   const [a, b] = currentPair;
