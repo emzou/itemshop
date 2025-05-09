@@ -47,6 +47,9 @@ function nextMatchup() {
     `Matchup ${roundCount} of ${MAX_ROUNDS}`;
   document.getElementById('unseen').textContent =
     `Unseen items: ${items.length - seenItems.size}`;
+    document.getElementById('counterSmall').textContent = `${roundCount}/${MAX_ROUNDS}`;
+    document.getElementById('unseenSmall').textContent = `unseen: ${items.length - seenItems.size}`;
+
 }
 
 function handleVote(winnerIndex) {

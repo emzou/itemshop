@@ -19,7 +19,7 @@
         </div>
         <button id="startButton">start </button>
       </div>
-      <p id="unseen" style="margin-bottom: 1rem;"></p>
+
       <div id="matchScreen" style="display: none;">
         <div id="matchup">
           <div class="box" id="boxA"></div>
@@ -27,19 +27,26 @@
           <div class="box" id="boxB"></div>
         </div>
         <div id="controlsRow">
-            <p id="counter" style="margin: 0;"></p>
-            <button id="endButton">end early / see ranking</button>
-          </div>          
+          <p id="counter" style="margin: 0;"></p>
+          <button id="endButton">end early / see ranking</button>
+        </div>
       </div>
+
       <div id="results" style="display: none;">
         <div id="rankingWrapper">
           <h2>final rankings</h2>
           <ol id="rankingList"></ol>
         </div>
         <button id="restartButton">start over</button>
-      </div>      
+      </div>
+    </div>
+
+    <div id="statusBar">
+      <span id="unseenSmall">unseen: 0</span>
+      <span id="counterSmall">0/30</span>
     </div>
   </div>
+
   <script src="script.js"></script>
   <svg width="0" height="0">
     <filter id="squiggle">
@@ -49,6 +56,8 @@
   </svg>
 </body>
 </html>
+
+
 
 
   

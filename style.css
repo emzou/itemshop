@@ -118,6 +118,16 @@ body {
     background-color: #d8bfd8;
     cursor: pointer;
   }
+
+  #statusBar {
+    font-size: 0.75rem;
+    display: flex;
+    justify-content: flex-start;
+    gap: 1rem;
+    padding: 0.25rem 1rem;
+    color: #555;
+  }
+  
   
   
   
