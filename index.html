@@ -6,29 +6,46 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div id="app">
-    <div id="startScreen">
-      <h1> Welcome to the Ranking Game </h1>
-      <button id="startButton">Start Ranking!</button>
-    </div>
-    <p id="counter" style="margin-bottom: 0.25rem;"></p>
-    <p id="unseen" style="margin-bottom: 1rem;"></p>
-    <div id="matchScreen" style="display: none;">
-      <h2>Which one do you prefer?</h2>
-      <div id="matchup">
-        <div class="box" id="boxA"></div>
-        <span class="vs">VS</span>
-        <div class="box" id="boxB"></div>
+  <div id="outerBox">
+    <div id="app">
+      <div id="startScreen">
+        <p> powerscaling random stuff </p>
+        <button id="contextToggle" class="context-button">context ▸</button>
+        <div id="contextBox" style="display: none;">
+          <p>
+            okay so i watched conclave and i was talking to sarah and grace about how catholicism aesthetics are overrated; in particular that
+            a murmuring creek in a meadow high diffs the sistine chapel and ok i dont have a explanation for how that lead to this
+          </p>
+        </div>
+        <button id="startButton">start </button>
       </div>
-      <button id="endButton">Done Ranking</button>
-    </div>
-
-    <div id="results" style="display: none;">
-      <h2>🏆 Final Rankings</h2>
-      <ol id="rankingList"></ol>
+      <p id="counter" style="margin-bottom: 0.25rem;"></p>
+      <p id="unseen" style="margin-bottom: 1rem;"></p>
+      <div id="matchScreen" style="display: none;">
+        <div id="matchup">
+          <div class="box" id="boxA"></div>
+          <span class="vs">or</span>
+          <div class="box" id="boxB"></div>
+        </div>
+        <button id="endButton">see ranking</button>
+      </div>
+      <div id="results" style="display: none;">
+        <h2>🏆 Final Rankings</h2>
+        <ol id="rankingList"></ol>
+      </div>
     </div>
   </div>
   <script src="script.js"></script>
+  <svg width="0" height="0">
+    <filter id="squiggle">
+      <feTurbulence baseFrequency="0.03" numOctaves="2" result="noise"/>
+      <feDisplacementMap in="SourceGraphic" in2="noise" scale="2"/>
+    </filter>
+  </svg>
 </body>
 </html>
+
+
+  
+
 

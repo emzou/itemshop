@@ -1,11 +1,9 @@
 let items = [];
 let scores = {};
 let currentPair = [];
-let allPairs = new Set();
-let shownPairs = new Set();
 let seenItems = new Set();
-
-
+let roundCount = 0;
+const MAX_ROUNDS = 30;
 
 function updateElo(rA, rB, winner, k = 32) {
   const eA = 1 / (1 + Math.pow(10, (rB - rA) / 400));
@@ -13,56 +11,43 @@ function updateElo(rA, rB, winner, k = 32) {
   const sB = 1 - sA;
   return [
     rA + k * (sA - eA),
-    rB + k * (sB - eA - sB + sB) // same as: rB + k * (sB - eB)
+    rB + k * (sB - (1 - eA)) // equivalent to rB + k*(sB - eB)
   ];
 }
 
 async function loadItems() {
-    const res = await fetch('list.txt');
-    const text = await res.text();
-    items = text.trim().split('\n');
-    items.forEach(item => scores[item] = 1000);
-  
-    // all unique unordered pairs
-    for (let i = 0; i < items.length; i++) {
-      for (let j = i + 1; j < items.length; j++) {
-        allPairs.add(JSON.stringify([items[i], items[j]]));
-      }
-    }
-  
-    nextMatchup();
-  }
-  
+  const res = await fetch('list.txt');
+  const text = await res.text();
+  items = text.trim().split('\n');
+  items.forEach(item => scores[item] = 1000);
+  nextMatchup();
+}
 
-  function nextMatchup() {
-    if (shownPairs.size === allPairs.size) {
-      showResults();
-      return;
-    }
-  
-    let pair;
-    do {
-      const arr = Array.from(allPairs);
-      pair = JSON.parse(arr[Math.floor(Math.random() * arr.length)]);
-    } while (shownPairs.has(JSON.stringify(pair)));
-  
-    shownPairs.add(JSON.stringify(pair));
-    currentPair = pair;
-  
-    // Track what has been seen
-    seenItems.add(pair[0]);
-    seenItems.add(pair[1]);
-  
-    // Update interface
-    document.getElementById('boxA').textContent = pair[0];
-    document.getElementById('boxB').textContent = pair[1];
-    document.getElementById('counter').textContent =
-      `Matchup ${shownPairs.size} of ${allPairs.size}`;
-    document.getElementById('unseen').textContent =
-      `Unseen items: ${items.length - seenItems.size}`;
+function nextMatchup() {
+  if (roundCount >= MAX_ROUNDS) {
+    showResults();
+    return;
   }
-  
-  
+
+  let a = items[Math.floor(Math.random() * items.length)];
+  let b;
+  do {
+    b = items[Math.floor(Math.random() * items.length)];
+  } while (a === b);
+
+  currentPair = [a, b];
+  seenItems.add(a);
+  seenItems.add(b);
+  roundCount++;
+
+  document.getElementById('boxA').textContent = a;
+  document.getElementById('boxB').textContent = b;
+
+  document.getElementById('counter').textContent = 
+    `Matchup ${roundCount} of ${MAX_ROUNDS}`;
+  document.getElementById('unseen').textContent =
+    `Unseen items: ${items.length - seenItems.size}`;
+}
 
 function handleVote(winnerIndex) {
   const [a, b] = currentPair;
@@ -73,6 +58,9 @@ function handleVote(winnerIndex) {
 }
 
 function showResults() {
+    if (roundCount < MAX_ROUNDS) {
+        console.log(`User ended early at round ${roundCount}`);
+      }      
   document.getElementById('matchScreen').style.display = 'none';
   document.getElementById('results').style.display = 'block';
   const list = Object.entries(scores).sort((a, b) => b[1] - a[1]);
@@ -93,4 +81,12 @@ document.getElementById('startButton').onclick = () => {
 document.getElementById('boxA').onclick = () => handleVote(0);
 document.getElementById('boxB').onclick = () => handleVote(1);
 document.getElementById('endButton').onclick = showResults;
+document.getElementById('contextToggle').onclick = function () {
+  const box = document.getElementById("contextBox");
+  const isVisible = box.style.display === "block";
+  box.style.display = isVisible ? "none" : "block";
+  this.textContent = isVisible ? "context ▸" : "context ▾";
+};
+
+  
 

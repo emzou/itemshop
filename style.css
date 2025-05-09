@@ -1,20 +1,20 @@
 body {
-  font-family: monospace;
-  text-align: center;
-  background: #fff0f5;
-  color: #333;
-}
-
-#app {
-  max-width: 500px;
-  margin: 0 auto;
-  padding: 2rem;
-}
-
-#startScreen, #matchScreen, #results {
+    font-family: monospace;
+    text-align: center;
+    background: #fff0f5;
+    color: #333;
+  }
+  
+  #app {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 2rem;
+  }
+  
+  #startScreen, #matchScreen, #results {
     transition: opacity 0.5s ease;
   }
-
+  
   button {
     font-size: 1.2rem;
     padding: 0.75rem 1.5rem;
@@ -31,13 +31,14 @@ body {
     align-items: center;
     margin-top: 1rem;
     padding: 1.5rem;
-    border: 3px dashed black; /* squiggly-ish */
+    border: 3px solid black;
     border-radius: 20px;
     background: #fff;
+    filter: url('#squiggle');
   }
   
   .box {
-    border: 3px dashed black;
+    border: 3px solid black;
     background: #ffe4e1;
     width: 160px;
     height: 160px;
@@ -50,9 +51,8 @@ body {
     cursor: pointer;
     box-shadow: 2px 2px 0px black;
     transform: rotate(-0.5deg);
+    filter: url('#squiggle');
   }
-  
-  
   
   .box:hover {
     transform: scale(1.05);
@@ -62,3 +62,36 @@ body {
     font-weight: bold;
     font-size: 1.2rem;
   }
+  
+  .context-button {
+    background: none;
+    border: none;
+    font-family: monospace;
+    font-size: 1rem;
+    text-decoration: underline;
+    cursor: pointer;
+    margin-bottom: 0.5rem;
+  }
+  
+  #contextBox {
+    background: #fff;
+    border: 1px solid black;
+    border-radius: 12px;
+    padding: 1rem;
+    margin: 0 auto 1rem auto;
+    max-width: 500px;
+    text-align: left;
+    filter: url('#squiggle');
+  }
+  
+  #outerBox {
+    border: 3px solid black;
+    border-radius: 20px;
+    padding: 2rem;
+    max-width: 700px;
+    margin: 2rem auto;
+    background: #fffafc;
+    filter: url('#squiggle');
+  }
+  
+  
