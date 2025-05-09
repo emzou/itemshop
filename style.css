@@ -30,18 +30,15 @@ body {
     justify-content: space-around;
     align-items: center;
     margin-top: 1rem;
-    padding: 1.5rem;
-    border: 3px solid black;
-    border-radius: 20px;
-    background: #fff;
-    filter: url('#squiggle');
+    margin-bottom: 1rem;
   }
+  
   
   .box {
     border: 3px solid black;
     background: #ffe4e1;
-    width: 160px;
-    height: 160px;
+    width: 400px;
+    height: 400px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -93,5 +90,34 @@ body {
     background: #fffafc;
     filter: url('#squiggle');
   }
+
+  #controlsRow {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    align-items: center;
+    margin-top: 1rem;
+  }
+  
+  #rankingWrapper {
+    border: 3px solid black;
+    border-radius: 20px;
+    padding: 2rem;
+    max-width: 600px;
+    margin: 2rem auto;
+    background: #fff;
+    filter: url('#squiggle');
+  }
+  
+  #restartButton {
+    font-size: 1rem;
+    padding: 0.5rem 1.2rem;
+    margin-top: 1.5rem;
+    border: none;
+    border-radius: 10px;
+    background-color: #d8bfd8;
+    cursor: pointer;
+  }
+  
   
   

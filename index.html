@@ -19,7 +19,6 @@
         </div>
         <button id="startButton">start </button>
       </div>
-      <p id="counter" style="margin-bottom: 0.25rem;"></p>
       <p id="unseen" style="margin-bottom: 1rem;"></p>
       <div id="matchScreen" style="display: none;">
         <div id="matchup">
@@ -27,12 +26,18 @@
           <span class="vs">or</span>
           <div class="box" id="boxB"></div>
         </div>
-        <button id="endButton">see ranking</button>
+        <div id="controlsRow">
+            <p id="counter" style="margin: 0;"></p>
+            <button id="endButton">end early / see ranking</button>
+          </div>          
       </div>
       <div id="results" style="display: none;">
-        <h2>🏆 Final Rankings</h2>
-        <ol id="rankingList"></ol>
-      </div>
+        <div id="rankingWrapper">
+          <h2>final rankings</h2>
+          <ol id="rankingList"></ol>
+        </div>
+        <button id="restartButton">start over</button>
+      </div>      
     </div>
   </div>
   <script src="script.js"></script>

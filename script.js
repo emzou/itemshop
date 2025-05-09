@@ -88,5 +88,8 @@ document.getElementById('contextToggle').onclick = function () {
   this.textContent = isVisible ? "context ▸" : "context ▾";
 };
 
+document.getElementById('restartButton').onclick = () => {
+    location.reload();
+  };
   
 
