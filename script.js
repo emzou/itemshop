@@ -3,7 +3,7 @@ let scores = {};
 let currentPair = [];
 let seenItems = new Set();
 let roundCount = 0;
-const MAX_ROUNDS = 30;
+const MAX_ROUNDS = 40;
 
 function updateElo(rA, rB, winner, k = 32) {
   const eA = 1 / (1 + Math.pow(10, (rB - rA) / 400));
