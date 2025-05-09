@@ -29,21 +29,29 @@ body {
     display: flex;
     justify-content: space-around;
     align-items: center;
-    margin-top: 2rem;
+    margin-top: 1rem;
+    padding: 1.5rem;
+    border: 3px dashed black; /* squiggly-ish */
+    border-radius: 20px;
+    background: #fff;
   }
   
   .box {
-    border: 3px solid black;
-    border-radius: 16px;
+    border: 3px dashed black;
     background: #ffe4e1;
     width: 160px;
     height: 160px;
-    font-family: 'Comic Sans MS', cursive;
-    box-shadow:
-      inset 0 0 0 3px white,
-      4px 4px 0 black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.1rem;
+    font-family: monospace;
+    border-radius: 20px;
+    cursor: pointer;
+    box-shadow: 2px 2px 0px black;
     transform: rotate(-0.5deg);
   }
+  
   
   
   .box:hover {

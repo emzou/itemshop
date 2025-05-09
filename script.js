@@ -3,6 +3,8 @@ let scores = {};
 let currentPair = [];
 let allPairs = new Set();
 let shownPairs = new Set();
+let seenItems = new Set();
+
 
 
 function updateElo(rA, rB, winner, k = 32) {
@@ -47,13 +49,19 @@ async function loadItems() {
     shownPairs.add(JSON.stringify(pair));
     currentPair = pair;
   
+    // Track what has been seen
+    seenItems.add(pair[0]);
+    seenItems.add(pair[1]);
+  
+    // Update interface
     document.getElementById('boxA').textContent = pair[0];
     document.getElementById('boxB').textContent = pair[1];
-  
-    // Update counter
-    document.getElementById('counter').textContent = 
+    document.getElementById('counter').textContent =
       `Matchup ${shownPairs.size} of ${allPairs.size}`;
+    document.getElementById('unseen').textContent =
+      `Unseen items: ${items.length - seenItems.size}`;
   }
+  
   
 
 function handleVote(winnerIndex) {
