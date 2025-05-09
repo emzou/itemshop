@@ -1,0 +1,56 @@
+body {
+  font-family: monospace;
+  text-align: center;
+  background: #fff0f5;
+  color: #333;
+}
+
+#app {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+#startScreen, #matchScreen, #results {
+    transition: opacity 0.5s ease;
+  }
+
+  button {
+    font-size: 1.2rem;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 12px;
+    background-color: #d8bfd8;
+    cursor: pointer;
+    margin: 1rem;
+  }
+  
+  #matchup {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 2rem;
+  }
+  
+  .box {
+    background: #ffe4e1;
+    width: 160px;
+    height: 160px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 16px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    transition: transform 0.1s ease;
+  }
+  
+  .box:hover {
+    transform: scale(1.05);
+  }
+  
+  .vs {
+    font-weight: bold;
+    font-size: 1.2rem;
+  }

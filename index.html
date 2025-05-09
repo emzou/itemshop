@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Pick Your Fave</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="app">
+    <div id="startScreen">
+      <h1> Welcome to the Ranking Game </h1>
+      <button id="startButton">Start Ranking!</button>
+    </div>
+
+    <div id="matchScreen" style="display: none;">
+      <h2>Which one do you prefer?</h2>
+      <div id="matchup">
+        <div class="box" id="boxA"></div>
+        <span class="vs">VS</span>
+        <div class="box" id="boxB"></div>
+      </div>
+      <button id="endButton">Done Ranking</button>
+    </div>
+
+    <div id="results" style="display: none;">
+      <h2>🏆 Final Rankings</h2>
+      <ol id="rankingList"></ol>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
+
