@@ -90,5 +90,45 @@ document.getElementById('contextToggle').onclick = function () {
 document.getElementById('restartButton').onclick = () => {
     location.reload();
   };
-  
+
+document.getElementById("customModeButton").onclick = () => {
+  document.getElementById("startScreen").style.display = "none";
+  document.getElementById("customInputScreen").style.display = "block";
+
+  const inputContainer = document.getElementById("customInputs");
+  inputContainer.innerHTML = "";
+  for (let i = 0; i < 10; i++) {
+    const input = document.createElement("input");
+    input.type = "text";
+    input.placeholder = `thing ${i + 1}`;
+    input.classList.add("user-item");
+    inputContainer.appendChild(input);
+  }
+};
+
+document.getElementById("submitCustom").onclick = async () => {
+  const userItems = Array.from(document.querySelectorAll(".user-item"))
+    .map(input => input.value.trim())
+    .filter(Boolean);
+
+  if (userItems.length !== 10) {
+    alert("Please enter exactly 10 items.");
+    return;
+  }
+
+  const res = await fetch('list.txt');
+  const text = await res.text();
+  const fullList = text.trim().split('\n');
+
+  const filteredList = fullList.filter(x => !userItems.includes(x));
+  const simItems = filteredList.sort(() => 0.5 - Math.random()).slice(0, 10);
+
+  items = userItems.concat(simItems);
+  items.forEach(item => scores[item] = 1000);
+
+  document.getElementById("customInputScreen").style.display = "none";
+  document.getElementById("matchScreen").style.display = "block";
+  nextMatchup();
+};
+
 
